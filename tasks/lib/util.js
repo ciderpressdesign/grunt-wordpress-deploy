@@ -12,6 +12,7 @@ exports.init = function (grunt) {
     var cmd = exports.mysqldump_cmd(config);
 
     var output = shell.exec(cmd, {silent: true}).output;
+    var output = shell.exec(cmd, {silent: true}).output.replace( 'Warning: Using a password on the command line interface can be insecure.', '' );
 
     grunt.file.write(output_paths.file, output);
     grunt.log.oklns("Database DUMP succesfully exported to: " + output_paths.file);
